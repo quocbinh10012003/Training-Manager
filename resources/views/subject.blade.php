@@ -23,7 +23,7 @@
         </thead>
         <tbody>
           <tr>
-            <td><input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"></td>
+            <td><input class="form-check-input toCheck" type="checkbox" value="" id="flexCheckChecked"></td>
             <td>Math</td>
             <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, minus. Recusandae exercitationem, similique harum obcaecati ut ducimus blanditiis laborum aspernatur itaque amet laudantium neque aliquid alias qui consequuntur incidunt facere.</td>
             <td><button class="btn btn-danger" id="checkall">Delete</button>
@@ -39,11 +39,11 @@
       <form>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Name</label>
-          <input type="text" class="form-control" id="nameInput" aria-describedby="emailHelp">
+          <input type="text" class="form-control" id="nameInput" aria-describedby="emailHelp"  placeholder="Input Name">
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Description</label>
-          <textarea class="form-control" id="descriptionInput" rows="5" cols="100">
+          <textarea class="form-control" id="descriptionInput" rows="5" cols="100" placeholder="Input Description">
           </textarea>
         </div>
         <button type="submit" class="btn btn-success">Add</button>
