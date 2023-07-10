@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\SubjectsController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('subject');
+    return view('welcome');
 });
+
+// Route::get('index',[OrderController::class,'index']);
+
+// Route::get('/index', [SubjectsController::class,'index']);
+// Route::get('/test-connection');
+Route::resource("/subject", SubjectsController::class);
+Route::get('/delete/{id}',[SubjectsController::class,'delete']);

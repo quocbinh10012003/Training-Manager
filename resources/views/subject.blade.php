@@ -22,31 +22,40 @@
           </tr>
         </thead>
         <tbody>
+          @foreach ($subjects as $item)
           <tr>
-            <td><input class="form-check-input toCheck" type="checkbox" value="" id="flexCheckChecked"></td>
-            <td>Math</td>
-            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, minus. Recusandae exercitationem, similique harum obcaecati ut ducimus blanditiis laborum aspernatur itaque amet laudantium neque aliquid alias qui consequuntur incidunt facere.</td>
-            <td><button class="btn btn-danger" id="checkall">Delete</button>
-                <button class="btn btn-info">Update</button>
+            <td><input class="form-check-input toCheck" type="checkbox" data-item="{{$item->id}}"></td>
+            <td>{{$item->name}}</td>
+            <td>{{$item->description}}</td>
+            <td>
+              {{-- <button data-item="{{$item->id}}" class="btn btn-danger" id="checkall">Delete</button> --}}
+              <a data-item="{{$item->id}}" class="btn btn-danger" href="{{"delete/".$item->id}}">
+                Delete
+              </a>
+              <a class="btn btn-info" href="{{ url('/subject/create' )}}">
+                Update
+              </a>
+               
             </td>
           </tr>
+          @endforeach
         </tbody>
       </table>
     </div>
 
     <div class="form-add" id="form-add">
         <h2>Add Subject</h2>
-      <form>
+      <form action="{{ url('subject') }}" method="POST">
+        {!! csrf_field() !!}
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Name</label>
-          <input type="text" class="form-control" id="nameInput" aria-describedby="emailHelp"  placeholder="Input Name">
+          <label for="nameInput" class="form-label">Name</label>
+          <input type="text" class="form-control" name="Name" id="nameInput" placeholder="Input Name">
         </div>
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Description</label>
-          <textarea class="form-control" id="descriptionInput" rows="5" cols="100" placeholder="Input Description">
-          </textarea>
+          <label for="descriptionInput" class="form-label">Description</label>
+          <textarea class="form-control" id="descriptionInput" name="Des" rows="5" placeholder="Input Description"></textarea>
         </div>
-        <button type="submit" class="btn btn-success">Add</button>
+        <input type="submit" value="Save" class="btn btn-success">
       </form>
     </div>
    
