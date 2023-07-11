@@ -10,11 +10,12 @@ class ApiController extends Controller
 {
     //
     public function create(Request $request){
-        $sub = new Subject();
-        $sub->name = $request->input('name');
-        $sub->description = $request->input('description');
-
-        $sub-save(); 
-        return response()->json($sub);
+        $subjects = new Subjects($request->all());
+        $subjects->save();
+        $subjects = Subjects::all();
+        return response()->json([
+            'subjects'=> $subjects,
+            'success'=>true
+        ]);
     }
 }

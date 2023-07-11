@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\SubjectsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,5 +22,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('delete{/id}',[SubjectsController::class,'delete']);
-// Route::post('/subject','ApiController@create');
+Route::post('/',[SubjectsController::class,'search']);
+Route::post('/add-subjects',[SubjectsController::class,'store']);
+Route::delete('/delete/{id}',[SubjectsController::class,'destroy']);

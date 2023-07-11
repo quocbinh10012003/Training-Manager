@@ -13,10 +13,15 @@ class SubjectsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function search(Request $request) {
-        $search = Course::where('name','LIKE','%'.$request->key.'%')->get();
+    public function search() {
+        // $search = Course::where('name','LIKE','%'.$request->key.'%')->get();
+        // return response()->json([
+        //     'search'=> $search
+        // ]);
+
+        $subjects = Subject::all();
         return response()->json([
-            'search'=> $search
+            'data'=>$subjects
         ]);
 
     }
@@ -26,6 +31,7 @@ class SubjectsController extends Controller
         $subjects = Subject::all();
         //
         return view('subject')->with('subjects',$subjects);
+     
     }
 
     /**
@@ -47,31 +53,28 @@ class SubjectsController extends Controller
      */
     public function store(Request $request)
     {
-        
-        // $validate = Validator::make($request->all(),[
-        //     'name'=> 'required:max:191',
-        //     'description'=>'required:max:191',
-        // ]);
-        // if ($validate->failed()) {
-        //     return response()->json([
-        //         'validate'=>$validate->errors()->messages(),
-        //     'success'=>false
-        //     ]);
-        // }
-        // $subjects = new Subjects($request->all());
-        // $subjects->save();
-        // $subjects = Subjects::all();
-        // return response()->json([
-        //     'subjects'=> $subjects,
-        //     'success'=>true
-        // ]);
-
+        $validate = Validator::make($request->all(),[
+            'name'=> 'required|max:191',
+            'description'=>'required|max:191',
+        ]);
+        if ($validate->failed()) {
+            return response()->json([
+                'validate'=>$validate->errors()->messages(),
+            'success'=>false
+            ]);
+        }else{
+            $subjects = new Subject($request->all());
+            $subjects->save();
+            return response()->json([
+            'result'=>true
+            ]); 
+        }
         //C2:
-        $sub = new Subject();
-        $sub->name = $request->Name;
-        $sub->description = $request->Des;
-        $sub->save();
-        return redirect('subject');
+        // $sub = new Subject();
+        // $sub->name = $request->Name;
+        // $sub->description = $request->Des;
+        // $sub->save();
+        // return redirect('subject');
     }
 
     /**
@@ -116,32 +119,28 @@ class SubjectsController extends Controller
      */
     public function destroy($id)
     {
-       
-        
-        //
-        // try {
-        //     Subject::find($id)->delete();
-        //     $subjects = Subject::all();
-        //     return response()->json([
-        //         'subjects'=> $subjects,
-        //         'success'=>true
-        //     ]);
+        try {
+            Subject::find($id)->delete();
+            $subjects = Subject::all();
+            return response()->json([
+                'subjects'=> $subjects,
+                'success'=>true
+            ]);
             
-        // } catch (\Throwable $th) {
-        // $subjects = Subject::all();
-            
-        //     return response()->json([
-        //         'subjects'=> $subjects,
-        //         'success'=>false
-        //     ]);
-        // }     
+        } catch (\Throwable $th) {
+        $subjects = Subject::all();
+            return response()->json([
+                'subjects'=> $subjects,
+                'success'=>false
+            ]);
+        }     
     }
     public function delete($id)
     {
       
-        $data = Subject::find($id);
-        $data->delete();
-        return redirect('subject');
+        // $data = Subject::find($id);
+        // $data->delete();
+        // return redirect('subject');
         
         // try {
         //     Subject::whereIN('id',$arr)->delete();

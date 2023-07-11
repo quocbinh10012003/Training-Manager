@@ -15,13 +15,13 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // Route::get('index',[OrderController::class,'index']);
 
-// Route::get('/index', [SubjectsController::class,'index']);
+Route::get('/', [SubjectsController::class,'index']);
 // Route::get('/test-connection');
 Route::resource("/subject", SubjectsController::class);
 Route::get('/delete/{id}',[SubjectsController::class,'delete']);

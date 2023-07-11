@@ -21,41 +21,26 @@
             <th scope="col">Action</th>
           </tr>
         </thead>
-        <tbody>
-          @foreach ($subjects as $item)
-          <tr>
-            <td><input class="form-check-input toCheck" type="checkbox" data-item="{{$item->id}}"></td>
-            <td>{{$item->name}}</td>
-            <td>{{$item->description}}</td>
-            <td>
-              {{-- <button data-item="{{$item->id}}" class="btn btn-danger" id="checkall">Delete</button> --}}
-              <a data-item="{{$item->id}}" class="btn btn-danger" href="{{"delete/".$item->id}}">
-                Delete
-              </a>
-              <a class="btn btn-info" href="{{ url('/subject/create' )}}">
-                Update
-              </a>
-               
-            </td>
-          </tr>
-          @endforeach
-        </tbody>
+        <tbody class="tbSubject"></tbody>
       </table>
     </div>
 
     <div class="form-add" id="form-add">
         <h2>Add Subject</h2>
-      <form action="{{ url('subject') }}" method="POST">
-        {!! csrf_field() !!}
+      <form>
+        @csrf
+
         <div class="mb-3">
           <label for="nameInput" class="form-label">Name</label>
-          <input type="text" class="form-control" name="Name" id="nameInput" placeholder="Input Name">
+          <input type="text" class="form-control info" name="Name" id="nameInput" placeholder="Input Name">
         </div>
+
         <div class="mb-3">
           <label for="descriptionInput" class="form-label">Description</label>
-          <textarea class="form-control" id="descriptionInput" name="Des" rows="5" placeholder="Input Description"></textarea>
+          <textarea class="form-control info" id="descriptionInput" name="Des" rows="5" placeholder="Input Description"></textarea>
         </div>
-        <input type="submit" value="Save" class="btn btn-success">
+
+        <button class="btn btn-success" id="btn-add">Add</button>
       </form>
     </div>
    
