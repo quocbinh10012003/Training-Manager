@@ -22,6 +22,7 @@
           </tr>
         </thead>
         <tbody class="tbSubject"></tbody>
+        <tbody class="tbFind"></tbody>
       </table>
     </div>
 
@@ -43,5 +44,24 @@
         <button class="btn btn-success" id="btn-add">Add</button>
       </form>
     </div>
+
+    <div class="form-edit" id="form-edit">
+      <h2>Edit Subject</h2>
+      @csrf
+    <form>
+      <div class="mb-3">
+        <label for="nameInputEdit" class="form-label">Name</label>
+        <input type="text" class="form-control infoEdit" name="NameEdit" id="nameInputEdit" placeholder="Input Name">
+      </div>
+
+      <div class="mb-3">
+        <label for="descriptionInputEdit" class="form-label">Description</label>
+        <textarea class="form-control infoEdit" id="descriptionInputEdit" name="DesEdit" rows="5" placeholder="Input Description"></textarea>
+      </div>
+
+      <button class="btn btn-success" id="btn-editsave">Edit</button>
+      <button class="btn btn-danger" id="btn-cancel">Cancel</button>
+    </form>
+  </div>
    
 @endsection

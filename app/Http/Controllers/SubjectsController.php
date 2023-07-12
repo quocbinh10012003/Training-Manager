@@ -86,6 +86,10 @@ class SubjectsController extends Controller
     public function show($id)
     {
         //
+        $subject = Subject::find($id);
+        return response()->json([
+            'subject'=> $subject
+        ]);
     }
 
     /**
@@ -109,6 +113,27 @@ class SubjectsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validate = Validator::make($request->all(),[
+            'name'=> 'required:max:191',
+            'description'=>'required:max:191',
+        ]);
+        if ($validate->failed()) {
+            return response()->json([
+            'validate'=>$validate->errors()->messages(),
+            'success'=>false
+
+            ]);
+        }
+        $subject = Subject::find($id);
+        $subject->name = $request->name;
+        $subject->description = $request->description;
+        $subject->save();
+
+        $subjects = Subject::all();
+        return response()->json([
+            'subjects'=> $subjects,
+            'success'=>true
+        ]);
     }
 
     /**
@@ -161,9 +186,12 @@ class SubjectsController extends Controller
           
         
     }
-    public function hello()
+    public function searchby(Request $request)
     {
-       
+        $search = Course::where('name','LIKE','%'.$request->key.'%');
+        return response()->json([
+            'search'=> $search
+        ]);
     }
 
 }

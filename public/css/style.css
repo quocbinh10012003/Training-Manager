@@ -1,3 +1,43 @@
 .form-add{
    display: none;
 }
+.form-edit{
+   display: none;
+}
+@media (max-width: 768px) {
+   .mbl-none{
+       display: none;
+   }
+  .func{
+   /* display: none; */
+   position: fixed;
+   right: 0;
+   top: 100px;
+  }
+  .form-edit > div > label> div> .info,
+.form-c > div > label> div> .info{
+   padding: 4px 8px;
+   min-width: 200px;
+   
+
+}
+ }
+ @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+   .md-12{
+       flex: 0 0 auto;
+   width: 100%;
+   }
+  .func{
+   /* display: none; */
+   position: fixed;
+   right: 0;
+   top: 100px;
+  }
+  .form-edit > div > label> div> .info,
+.form-c > div > label> div> .info{
+   padding: 4px 8px;
+   min-width: 300px;
+   
+
+}
+}

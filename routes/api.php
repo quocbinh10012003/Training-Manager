@@ -23,5 +23,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/',[SubjectsController::class,'search']);
+Route::post('/getSearch',[SubjectsController::class,'search']);
 Route::post('/add-subjects',[SubjectsController::class,'store']);
 Route::delete('/delete/{id}',[SubjectsController::class,'destroy']);
+Route::put('/edit-subject/{id}',[SubjectsController::class,'update']);
+Route::post('/edit/show/{id}',[SubjectsController::class,'show']);
